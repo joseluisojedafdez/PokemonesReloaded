@@ -9,6 +9,8 @@ import kotlinx.coroutines.launch
 class PokeViewModel: ViewModel() {
 
     private val repository= Repository()
+    val pokeList=repository.pokeList
+
     fun doSomethig(){
         Log.d("initiate ViewModel", "doSomethig: ")}
     init{
