@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.i4bchile.pokemonesreloaded.R
 import com.i4bchile.pokemonesreloaded.databinding.FragmentListBinding
 import com.i4bchile.pokemonesreloaded.viewmodel.PokeViewModel
 
@@ -28,7 +29,13 @@ class ListFragment: Fragment() {
         viewModel.pokeList.observe(viewLifecycleOwner, { pokelist ->pokelist?.let{
             adapter.update(it)}
         })
-
+        adapter.getSelected().observe(viewLifecycleOwner,{
+                activity?.supportFragmentManager
+                    ?.beginTransaction()
+                    ?.replace(R.id.main_container,DetailFragment(it.id))
+                    ?.addToBackStack("volver")
+                    ?.commit()
+        })
 
         return binding.root
     }

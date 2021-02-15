@@ -10,6 +10,8 @@ class Repository {
     private val database=PokeApplication.pokeDatabase!!
     val pokeList=database.pokeDao().getAlPokemons()
 
+
+
     suspend fun getPokeList(){
         Log.d("Repository", "getPokeList: ")
         val response= RetrofitClient.retrofitInstance().getPokemones()
@@ -31,5 +33,22 @@ class Repository {
 
     }
 
+    suspend fun getPokeDetail(pokeId: Int):PokeDetail {
+        val response=RetrofitClient.retrofitInstance().getPokemon(pokeId)
+        var pokeDetail=PokeDetail("","",listOf<String>(),"")
 
+        when (response.isSuccessful){
+
+            true->{
+                pokeDetail= response.body()!!
+
+            }
+            false -> {
+
+            }
+        }
+
+        return pokeDetail
+
+    }
 }

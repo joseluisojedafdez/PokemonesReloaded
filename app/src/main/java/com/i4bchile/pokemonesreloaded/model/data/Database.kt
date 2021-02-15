@@ -15,6 +15,7 @@ interface PokeDao{
     @Query("SELECT * FROM pokemon")
     fun getAlPokemons(): LiveData<List<Pokemon>>
 
+
 }
 
 @Database(entities=[Pokemon::class], version=1)
