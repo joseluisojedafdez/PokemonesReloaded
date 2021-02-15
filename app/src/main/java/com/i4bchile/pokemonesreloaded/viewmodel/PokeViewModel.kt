@@ -11,8 +11,7 @@ class PokeViewModel: ViewModel() {
     private val repository= Repository()
     val pokeList=repository.pokeList
 
-    fun doSomethig(){
-        Log.d("initiate ViewModel", "doSomethig: ")}
+
     init{
                viewModelScope.launch{
                    Log.d("initiate ViewModel", ": obteniendo lista Pokemones")
