@@ -30,9 +30,11 @@ class ListFragment: Fragment() {
             adapter.update(it)}
         })
         adapter.getSelected().observe(viewLifecycleOwner,{
+                val pokeId=it.id.replace("#","").toInt()-1
+                viewModel.getPokeDetails(pokeId)
                 activity?.supportFragmentManager
                     ?.beginTransaction()
-                    ?.replace(R.id.main_container,DetailFragment(it.id))
+                    ?.replace(R.id.main_container,DetailFragment())
                     ?.addToBackStack("volver")
                     ?.commit()
         })
